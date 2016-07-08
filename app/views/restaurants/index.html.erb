@@ -1,13 +1,53 @@
-<h1>Restaurants#index</h1>
-<p>Find me in app/views/restaurants/index.html.erb</p>
+<head>
+	<style>
+	table, th, td {
+    	border: 1px solid black;
+	}
+	</style>
+</head>
 
-<% @restaurants.each do |x| %>
-	<tr>
-		<td><<%= x.name%>/td>
-		<td><<%= x.description%>/td>
-		<td><<%= x.address%>/td>
-		<td><<%= x.phone%>/td>
-		<td><<%= link_to 'Show', restaurant_path(x) %>/td>
-	</tr>
-<% end %>
-<%= link_to 'Create New Restaurants', new_restaurant_path %>
+
+<body>
+
+	<h1>Restaurants#index</h1>
+	<p>Find me in app/views/restaurants/index.html.erb</p>
+
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Address</th>
+			<th>Phone Number</th>
+			<th>Show</th>
+			<% if owner_signed_in? %>
+				<th>Edit</th>
+			<% end %>
+		</tr>
+
+		<% @restaurants.each do |x| %>
+
+		<tr>
+			<td><%= x.name%></td>
+			<td><%= x.description%></td>
+			<td><%= x.address%></td> 
+			<td><%= x.phone%></td>
+			<td><%= link_to 'Show', restaurant_path(x) %></td>
+			<% if current_owner == x.owner %>
+				<td><%= link_to 'Edit', edit_restaurant_path(x) %></td>
+			<% end %>
+		</tr>
+
+		<% end %>
+
+	</table>
+
+
+	<% if owner_signed_in? %>
+		<p>
+			<%= link_to 'Create New Restaurants', new_restaurant_path %>
+		</p>
+	<% else %>
+		<p>Please sign up or login in</p>
+	<% end %>
+
+</body>

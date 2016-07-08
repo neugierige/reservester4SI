@@ -17,6 +17,22 @@
 </p>
 
 <p>
+	<strong>Map:</strong>
+	<iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
+	&q=<%= @restaurant.address %>">
+	</iframe>
+
+<!-- 	<div style="width:500px;overflow:hidden;height:500px;max-width:100%;">
+		<div id="gmap_display" style="height:100%; width:100%;max-width:100%;">	
+			<iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
+	&q=<%= @restaurant.address %>>"></iframe>
+		</div>
+		<style>#gmap_display img{max-width:none!important;background:none!important;font-size: inherit;}</style>
+	</div> -->
+
+</p>
+
+<p>
 	<strong>Phone:</strong>
 	<%= @restaurant.phone %>
 </p>
@@ -26,5 +42,7 @@
 	<%= @restaurant.owner.email %>
 </p>
 
+
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
+<%= link_to 'Index', root_path %>
