@@ -27,9 +27,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    if current_owner == @restaurant.owner
-      @restaurant = current_owner.restaurants.find(params[:id])
-    end
+    @restaurant = current_owner.restaurants.find(params[:id])
   end
 
   def update
@@ -43,7 +41,11 @@ class RestaurantsController < ApplicationController
 
   def destroy
     @restaurant = current_owner.restaurants.find(params[:id])
-    @restaurant.destroy
+    if @restaurant.destroy
+      flash[:danger] = "restaurant was deleted"
+    else
+      flash[:danger] = "restaurant was not deleted"
+    end
     redirect_to restaurants_path
   end
 

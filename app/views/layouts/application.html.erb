@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<% flash.each do |name, message| %>
+	<div><%= message %></div>
+<% end %>
+
 <p class="navbar-text pull-right">
 	<% if owner_signed_in? %>
 		Logged in as <strong><%= current_owner.email%></strong>
