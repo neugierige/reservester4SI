@@ -2,10 +2,10 @@ class RestaurantsController < ApplicationController
   def index
   end
 
-  def show
+  def new
   end
 
-  def new
+  def show
   end
 
   def create

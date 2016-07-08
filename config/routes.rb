@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get 'restaurants/destroy'
 
   devise_for :owners
+  root 'restaurants#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
