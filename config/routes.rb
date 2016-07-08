@@ -1,19 +1,7 @@
 Rails.application.routes.draw do
-  get 'restaurants/index'
-
-  get 'restaurants/show'
-
-  get 'restaurants/new'
-
-  get 'restaurants/create'
-
-  get 'restaurants/edit'
-
-  get 'restaurants/update'
-
-  get 'restaurants/destroy'
 
   devise_for :owners
+  resources :restaurants
   root 'restaurants#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
