@@ -1,5 +1,6 @@
 class RestaurantsController < ApplicationController
-before_action :authenticate_owner!, except: [:show, :index]
+  before_action :authenticate_owner!, except: [:show, :index]
+  before_action :set_restaurant, only: [:show]
 
 
   def index
@@ -7,7 +8,7 @@ before_action :authenticate_owner!, except: [:show, :index]
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    # @restaurant = Restaurant.find(params[:id])
   end
 
   def new
@@ -15,9 +16,10 @@ before_action :authenticate_owner!, except: [:show, :index]
   end
 
   def create
-    # @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = Restaurant.new(restaurant_params)
     @restaurant = current_owner.restaurants.new(restaurant_params)
     if @restaurant.save
+      flash[:success] = "#{@restaurant.name} saved!"
       redirect_to @restaurant
     else
       render 'new'
@@ -25,7 +27,9 @@ before_action :authenticate_owner!, except: [:show, :index]
   end
 
   def edit
-    @restaurant = current_owner.restaurants.find(params[:id])
+    if current_owner == @restaurant.owner
+      @restaurant = current_owner.restaurants.find(params[:id])
+    end
   end
 
   def update
@@ -49,4 +53,10 @@ before_action :authenticate_owner!, except: [:show, :index]
   def restaurant_params
     params.require(:restaurant).permit(:name, :description, :address, :phone)
   end
+
+  def set_restaurant
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+
 end
