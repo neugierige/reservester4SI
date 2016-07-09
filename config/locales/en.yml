@@ -19,5 +19,22 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
+# en:
+#   hello: "Hello world"
+
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      owner:
+        email: "E-mail address"
+    errors:
+      models:
+        owner:
+          attributes:
+            email:
+              presence: "email address required" 
+      models:
+        owner:
+          attributes:
+            email:
+              format: "not a real email address"

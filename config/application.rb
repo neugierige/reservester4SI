@@ -15,6 +15,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module Reservester
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -30,6 +31,10 @@ module Reservester
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+
+    # custom validation
+    config.autoload_paths += %W["#{config.root}/app/validators/"]
+
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
