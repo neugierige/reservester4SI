@@ -34,8 +34,17 @@
 	<%= @restaurant.owner.email %>
 </p>
 
+<script>
+function myFunction() {
+    var h = window.innerHeight;
+    document.getElementById("map").innerHTML = h.toString();
+}
+</script>
+
+<!-- <p id="map"></p> -->
+
 <p>
-	<iframe style="height:500px;width:100%;border:0;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
+	<iframe style = "height:500px; width:100%; border:0;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
 	&q=<%= @restaurant.address %>">
 	</iframe>
 
