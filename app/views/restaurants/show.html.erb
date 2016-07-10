@@ -1,52 +1,51 @@
-<%= link_to 'Index', root_path %> | 
-<% if current_owner == @restaurant.owner %>
-	<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
-	<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
-<% end %>
 
-<h1>Restaurants#show</h1>
-<p>Find me in app/views/restaurants/show.html.erb</p>
+<!DOCTYPE html>
+<head>
+	<link href="../assets/stylesheets/restaurant.scss" rel="stylesheet">
+</head>
+
+<body>
+	<%= link_to 'Index', root_path %>  |
+	<% if current_owner == @restaurant.owner %>
+		<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>  |
+		<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>  |
+		<%= link_to 'Make a Reservation', new_restaurant_reservation_path(@restaurant) %>
+	<% end %>
+
+	<h1>Restaurants#show</h1>
+	<p>Find me in app/views/restaurants/show.html.erb</p>
 
 
 
-<p>
-	<strong>Name:</strong>
-	<%= @restaurant.name %>
-</p>
+	<p>
+		<strong>Name:</strong>
+		<%= @restaurant.name %>
+	</p>
 
-<p>
-	<strong>Description:</strong>
-	<%= @restaurant.description %>
-</p>
+	<p>
+		<strong>Description:</strong>
+		<%= @restaurant.description %>
+	</p>
 
-<p>
-	<strong>Address:</strong>
-	<%= @restaurant.address %>
-</p>
+	<p>
+		<strong>Address:</strong>
+		<%= @restaurant.address %>
+	</p>
 
-<p>
-	<strong>Phone:</strong>
-	<%= @restaurant.phone %>
-</p>
+	<p>
+		<strong>Phone:</strong>
+		<%= @restaurant.phone %>
+	</p>
 
-<p>
-	<strong>Owner:</strong>
-	<%= @restaurant.owner.email %>
-</p>
+	<p>
+		<strong>Owner:</strong>
+		<%= @restaurant.owner.email %>
+	</p>
 
-<script>
-function myFunction() {
-    var h = window.innerHeight;
-    document.getElementById("map").innerHTML = h.toString();
-}
-</script>
 
-<!-- <p id="map"></p> -->
-
-<p>
-	<iframe style = "height:500px; width:100%; border:0;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
-	&q=<%= @restaurant.address %>">
-	</iframe>
-
-</p>
-
+	<div class="restaurant_gmap">
+		<iframe style = "height:100%; width:100%; border:0;" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD5nt-kaFLNPJ4eifWEBOKyplZFE35MZ6E
+		&q=<%= @restaurant.address %>">
+		</iframe>
+	</div>
+</body>

@@ -1,3 +1,11 @@
 // Place all the styles related to the restaurants controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.restaurant_gmap {
+ margin-left: 1em;
+ margin-right: 1em;
+ height: 50vh; //correspond to 50% of th height of the browser window
+ width: 60vw; //correspond to 60% of th width of the browser window
+ 
+}
