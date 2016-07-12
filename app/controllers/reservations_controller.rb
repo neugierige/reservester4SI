@@ -16,19 +16,17 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    get_restaurant
     # @reservation = @restaurant.reservations.new
     @reservation = Reservation.new
   end
 
   def create
-    get_restaurant
-
     @reservation = Reservation.new(reservation_params)
     @restaurant = Restaurant.find_by_id(@reservation.restaurant_id)
     if @reservation.save
       flash[:success] = "reservation saved"
-      redirect_to new_restaurant_reservation_path
+
+      redirect_to @restaurant
     else
       flash[:warning] = "whoops"
       redirect_to new_restaurant_reservation_path
