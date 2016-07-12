@@ -21,8 +21,10 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    @reservation = Reservation.new(reservation_params)
-    @restaurant = Restaurant.find_by_id(@reservation.restaurant_id)
+    @reservation = current_user.reservations.new(reservation_params)
+    # @reservation = Reservation.new(reservation_params)
+    # @restaurant = Restaurant.find_by_id(@reservation.restaurant_id)
+    @restaurant = @reservation.restaurant
     if @reservation.save
       flash[:success] = "reservation saved"
 
