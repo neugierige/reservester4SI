@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 20160709181437) do
     t.datetime "updated_at",       null: false
   end
 
+  add_index "reservations", ["restaurant_id"], name: "index_reservations_on_restaurant_id", using: :btree
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id", using: :btree
+
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -75,5 +78,7 @@ ActiveRecord::Schema.define(version: 20160709181437) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "reservations", "restaurants"
+  add_foreign_key "reservations", "users"
   add_foreign_key "restaurants", "owners"
 end
