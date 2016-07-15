@@ -36,5 +36,8 @@ module Reservester
     config.autoload_paths += %W["#{config.root}/app/validators/"]
 
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_mailer.delivery_method   = :postmark
+    config.action_mailer.postmark_settings = { :api_token => ENV['POSTMARK_API_TOKEN'] }
+
   end
 end

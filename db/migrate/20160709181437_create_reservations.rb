@@ -7,7 +7,7 @@ class CreateReservations < ActiveRecord::Migration
       t.text :message
       t.date :reservation_date
       t.time :reservation_time
-
+      t.integer :party_size
       t.timestamps null: false
     end
   end

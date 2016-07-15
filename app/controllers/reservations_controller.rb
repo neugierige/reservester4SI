@@ -8,6 +8,8 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @reservation = Reservation.find(params[:id])
+    # logger.debug @reservation.inspect
     if @reservation
       render :show
     else
@@ -16,19 +18,17 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    # @reservation = @restaurant.reservations.new
-    @reservation = Reservation.new
+    @reservation = @restaurant.reservations.new
   end
 
   def create
-    @reservation = current_user.reservations.new(reservation_params)
-    # @reservation = Reservation.new(reservation_params)
-    # @restaurant = Restaurant.find_by_id(@reservation.restaurant_id)
+    # debugger
+    @reservation = @restaurant.reservations.new(reservation_params)
+    # @reservation = current_user.reservations.new(reservation_params)
     @restaurant = @reservation.restaurant
     if @reservation.save
       flash[:success] = "reservation saved"
-
-      redirect_to @restaurant
+      redirect_to restaurant_reservation_path(@restaurant, @reservation)
     else
       flash[:warning] = "whoops"
       redirect_to new_restaurant_reservation_path

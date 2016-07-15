@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160709181437) do
     t.text     "message"
     t.date     "reservation_date"
     t.time     "reservation_time"
+    t.integer  "party_size"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
