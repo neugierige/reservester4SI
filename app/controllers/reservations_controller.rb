@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-
   before_action :set_reservation, only: [:show]
   before_action :get_restaurant, only: [:new, :create, :edit, :destroy]
 
@@ -24,7 +23,6 @@ class ReservationsController < ApplicationController
   def create
     # debugger
     @reservation = @restaurant.reservations.new(reservation_params)
-    # @reservation = current_user.reservations.new(reservation_params)
     @restaurant = @reservation.restaurant
     if @reservation.save
       flash[:success] = "reservation saved"
@@ -33,14 +31,6 @@ class ReservationsController < ApplicationController
       flash[:warning] = "whoops"
       redirect_to new_restaurant_reservation_path
     end
-
-    # @reservation = @restaurant.reservations.create(params[:reservation_id])
-    # if @reservation.save
-    #   redirect_to restaurant_reservations_path(@restaurant)
-    # else
-    #   flash[:danger] = "Reservation was not saved. Please try again."
-    #   redirect_to restaurant_path(@restaurant)
-    # end
 
   end
 
