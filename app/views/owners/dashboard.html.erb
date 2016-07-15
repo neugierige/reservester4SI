@@ -1,0 +1,34 @@
+<head>
+	
+</head>
+
+<body>
+
+<table>
+	<tr>
+		<th>Restaurant Name</th>
+		<th>Restaurant Address</th>
+		<th>Restaurant Number</th>
+		<th>Email</th>
+		<th>Message</th>
+		<th>Date</th>
+		<th>Time</th>
+	</tr>
+	<% @owner.restaurants.each do |x| %>
+		<% x.reservations.each do |r| %> 
+			<tr>
+				<td><%= x.name%></td>
+				<td><%= x.address%></td> 
+				<td><%= x.phone%></td>
+				<td><%= r.email%></td>
+				<td><%= r.message%></td>
+				<td><%= r.reservation_date %></td>
+				<td><%= r.reservation_time.strftime("%I:%M %p")%></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table><br>
+
+<%= link_to 'Index', root_path %>
+
+</body>
