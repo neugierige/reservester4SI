@@ -1,42 +1,78 @@
-<%= form_for [@restaurant, @reservation] do |f| %>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://raw.githubusercontent.com/jonthornton/jquery-timepicker/master/jquery.timepicker.css">
 
-	<% if @reservation.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@reservation.errors.count, "error") %>prohibited this reservation from being saved:</h2>
-			<ul>
-				<% @reservation.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-			</ul>
-		</div>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+  <%= javascript_include_tag "jquery-timepicker" %>
+
+
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  
+  $( function() {
+	  $('#disableTimeRangesExample').timepicker({
+	    'disableTimeRanges': [
+	        ['1am', '11:30am'],
+	        ['12pm', '5pm']
+	    ]
+		})
+	});
+  </script>
+</head>
+
+
+<body>
+	<%= form_for [@restaurant, @reservation] do |f| %>
+
+		<% if @reservation.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@reservation.errors.count, "error") %>prohibited this reservation from being saved:</h2>
+				<ul>
+					<% @reservation.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<p>
+			<%= f.label :email %><br>
+			<%= f.text_field :email %><br>
+		</p>
+
+		<p>
+			<%= f.hidden_field :restaurant_id, value: @restaurant.id %>
+		</p>
+
+		<p>
+			<%= f.label 'Date' %><br>
+			<input type="text" id="datepicker">
+		</p>
+
+		<p>
+			<%= f.label 'Time' %><br>
+			<input type="text" id="disableTimeRangesExample">
+			<!-- <%= f.text_field :reservation_datetime %><br> -->
+		</p>
+
+		<p>
+			<%= f.label :party_size %><br>
+			<%= f.text_field :party_size %><br>
+		</p>
+
+		<p>
+			<%= f.label :message %><br>
+			<%= f.text_field :message %><br>
+		</p>
+
+		<p>
+			<%= f.submit 'Save' %><br>
+		</p>
+
 	<% end %>
-
-	<p>
-		<%= f.label :email %><br>
-		<%= f.text_field :email %><br>
-	</p>
-
-	<p>
-		<%= f.hidden_field :restaurant_id, value: @restaurant.id %>
-	</p>
-
-	<p>
-		<%= f.label :reservation_datetime %><br>
-		<%= f.text_field :reservation_datetime %><br>
-	</p>
-
-	<p>
-		<%= f.label :party_size %><br>
-		<%= f.text_field :party_size %><br>
-	</p>
-
-	<p>
-		<%= f.label :message %><br>
-		<%= f.text_field :message %><br>
-	</p>
-
-	<p>
-		<%= f.submit 'Save' %><br>
-	</p>
-
-<% end %>
+</body>

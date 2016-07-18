@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show]
-  before_action :get_restaurant, only: [:new, :create, :edit, :destroy]
+  before_action :get_restaurant
 
   def index
     @reservation = Reservation.all
@@ -21,11 +21,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    # debugger
     @reservation = @restaurant.reservations.new(reservation_params)
-    @restaurant = @reservation.restaurant
+
     if @reservation.save
       flash[:success] = "reservation saved"
+
+      # send email here
+      ReservesterMailer.reservation_created(@reservation).deliver_later
+
       redirect_to restaurant_reservation_path(@restaurant, @reservation)
     else
       flash[:warning] = "whoops"
