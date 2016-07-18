@@ -1,7 +1,7 @@
 <h1>Reservations#show</h1>
 <p>Find me in app/views/reservations/show.html.erb</p>
 
-Your reservation is confirmed!
+Your reservation for <%= @current_owner.restaurant %> is confirmed!
 
 <p>
 	<strong>email:</strong>
@@ -14,13 +14,8 @@ Your reservation is confirmed!
 </p>
 
 <p>
-	<strong>date:</strong>
-	<%= @reservation.reservation_date %>
-</p> 
-
-<p>
-	<strong>time:</strong>
-	<%= @reservation.reservation_time %>
+	<strong>date & time:</strong>
+	<%= @reservation.reservation_datetime %>
 </p> 
 
 <p><%= link_to 'Index', root_path %></p>

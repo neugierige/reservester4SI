@@ -6,8 +6,7 @@ class ReservesterMailer < ApplicationMailer
 
 
 	def reservation_created(reservation)
-		@date = reservation.reservation_date
-		@time = reservation.reservation_time
+		@datetime = reservation.reservation_datetime
 		mail(to: @user.email, subject: 'Reservation confirmed')
 	end
 

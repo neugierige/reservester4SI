@@ -22,8 +22,7 @@
 				<td><%= x.phone%></td>
 				<td><%= r.email%></td>
 				<td><%= r.message%></td>
-				<td><%= r.reservation_date %></td>
-				<td><%= r.reservation_time.strftime("%I:%M %p")%></td>
+				<td><%= r.reservation_datetime.strftime("%I:%M %p, %b %d, %y") %></td>
 			</tr>
 		<% end %>
 	<% end %>
