@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.find(params[:id])
     # logger.debug @reservation.inspect
     if @reservation
       render :show
@@ -21,6 +20,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    Rails.logger.debug @reservation.to_json
+    
     @reservation = @restaurant.reservations.new(reservation_params)
 
     if @reservation.save
@@ -56,11 +57,11 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:email, :message, :party_size, :reservation_datetime, :restaurant_id)
+    params.require(:reservation).permit(:email, :message, :party_size, :date, :time, :reservation_datetime, :restaurant_id)
   end
 
   def set_reservation
-    @reservation = Reservation.find(params[:restaurant_id])
+    @reservation = Reservation.find(params[:id])
   end
 
   def get_restaurant
