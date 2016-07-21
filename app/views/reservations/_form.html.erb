@@ -18,8 +18,7 @@
 	  $('#disableTimeRangesExample').timepicker({
 	    'disableTimeRanges': [
 	        ['1am', '11:30am'],
-	        ['12pm', '5pm']
-	    ]
+	        ['12pm', '5pm']]
 		})
 	});
   </script>
@@ -51,12 +50,12 @@
 
 		<p>
 			<%= f.label 'Date' %><br>
-			<input type="text" id="datepicker" name="date" value= <%= @reservation.date %> >
+			<input type="text" id="datepicker" name="reservation[date]" value= <%= @reservation.date %> >
 		</p>
 
 		<p>
 			<%= f.label 'Time' %><br>
-			<input type="text" id="disableTimeRangesExample" name="time" value= <%= @reservation.time %> >
+			<input type="text" id="disableTimeRangesExample" name="reservation[time]" value= <%= @reservation.time %> >
 		</p>
 
 		<p>

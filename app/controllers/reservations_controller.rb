@@ -20,8 +20,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    Rails.logger.debug @reservation.to_json
-    
+    debugger
     @reservation = @restaurant.reservations.new(reservation_params)
 
     if @reservation.save
@@ -35,7 +34,6 @@ class ReservationsController < ApplicationController
       flash[:warning] = "whoops"
       redirect_to new_restaurant_reservation_path
     end
-
   end
 
   def edit

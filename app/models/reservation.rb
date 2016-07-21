@@ -22,6 +22,7 @@ class Reservation < ActiveRecord::Base
 
   def date=(date)
     if date != ''
+    	
       new_date = Date.parse(date)
       existing_time = reservation_datetime.present? ? reservation_datetime : Time.zone.now
       self.reservation_datetime = DateTime.new(new_date.year, new_date.month, new_date.day, existing_time.hour, existing_time.min, existing_time.sec, existing_time.zone)
