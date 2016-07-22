@@ -20,7 +20,6 @@ class Reservation < ActiveRecord::Base
   end
 
 
-
 	def time
 		reservation_datetime.present? ? reservation_datetime.strftime('%l:%M%P').strip : ''
 	end

@@ -1,0 +1,35 @@
+<head>
+	
+</head>
+
+<body>
+	<table>
+		<tr>
+			<th>Restaurant Name</th>
+			<th>Restaurant Address</th>
+			<th>Restaurant Number</th>
+			<th>Email</th>
+			<th>Message</th>
+			<th>Time</th>
+			<th>Date</th>
+
+		</tr>
+		<% @user.restaurants.each do |x| %>
+			<% if x.reservations.count > 0 %> 
+				<% x.reservations.each do |r| %> 
+					<tr>
+						<td><%= x.name%></td>
+						<td><%= x.address%></td> 
+						<td><%= x.phone%></td>
+						<td><%= r.email%></td>
+						<td><%= r.message%></td>
+						<td><%= r.reservation_datetime.strftime("%I:%M %p") %></td>
+						<td><%= r.reservation_datetime.strftime("%b %d, %y") %></td>
+					</tr>
+				<% end %>
+			<% end %>	
+		<% end %>
+	</table><br>
+	<%= link_to 'Index', root_path %>
+
+</body>

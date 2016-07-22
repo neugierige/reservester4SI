@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show]
   before_action :get_restaurant
+  before_action :get_user_id
 
   def index
     @reservation = Reservation.all
@@ -27,7 +28,7 @@ class ReservationsController < ApplicationController
       flash[:success] = "reservation saved"
 
       # send email here
-      ReservesterMailer.reservation_created(@reservation).deliver_later
+      # ReservesterMailer.reservation_created(@reservation).deliver_later
 
       redirect_to restaurant_reservation_path(@restaurant, @reservation)
     else
@@ -43,7 +44,7 @@ class ReservationsController < ApplicationController
   end
 
   def destroy
-    if @restaurant.destroy
+    if @reservation.destroy
       flash[:danger] = "reservation was deleted"
     else
       flash[:danger] = "reservation was not deleted"
@@ -55,7 +56,7 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:email, :message, :party_size, :date, :time, :reservation_datetime, :restaurant_id)
+    params.require(:reservation).permit(:email, :message, :party_size, :date, :time, :reservation_datetime, :restaurant_id, :user_id)
   end
 
   def set_reservation
@@ -66,6 +67,8 @@ class ReservationsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
-
+  def get_user_id
+    @user = User.find(params[:user_id])
+  end
 
 end

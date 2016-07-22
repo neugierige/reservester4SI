@@ -3,7 +3,7 @@ class OwnersController < ApplicationController
 
 	def dashboard
 		@owner = current_owner
-		@restaurant = current_owner.restaurants
+		# render ____
 	end
 
 end
