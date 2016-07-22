@@ -62,7 +62,9 @@
 
 		<p>
 			<%= f.label :party_size %><br>
-			<%= f.text_field :party_size %><br>
+
+			<!-- NOT SURE IF THIS WORKS :-) -->
+			<%= f.number_field(:party_size, in: 1..10) %><br>
 		</p>
 
 		<p>
