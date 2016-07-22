@@ -5,7 +5,7 @@ class Reservation < ActiveRecord::Base
 	validates_presence_of :restaurant, dependent: :destory
 	# validates_presence_of :reservation_datetime
 
-	def reservation_datetime=
+	def reservation_datetime=(reservation_datetime)
 		reservation_datetime = Date.parse("#{date}" + "#{time}")
 		save!
 	end
@@ -13,12 +13,6 @@ class Reservation < ActiveRecord::Base
 	def date
 		reservation_datetime.present? ? reservation_datetime.strftime('%b %e %Y') : ''
 	end
-
-	# def date=(date)
-	# 	if date != ''
-	# 		new_date = Date.parse(date)
-	# 	end
-	# end
 
   def date=(date)
     if date != ''
@@ -33,12 +27,6 @@ class Reservation < ActiveRecord::Base
 	def time
 		reservation_datetime.present? ? reservation_datetime.strftime('%l:%M %P').strip : ''
 	end
-
-	# def time=(time)
-	# 	if time != ''
-	# 		new_time = Time.zone.parse(time)
-	# 	end
-	# end
 
   def time=(time)
     if time != ''

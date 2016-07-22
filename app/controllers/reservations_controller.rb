@@ -20,7 +20,7 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    debugger
+    # debugger
     @reservation = @restaurant.reservations.new(reservation_params)
 
     if @reservation.save

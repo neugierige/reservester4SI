@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :reservations
 
+  USER_ROLES=["user", "owner", "admin"]
+  validates_inclusion_of :role, in: USER_ROLES
+  
 end
