@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
   USER_ROLES=["user", "owner", "admin"]
   validates_inclusion_of :role, in: USER_ROLES
   
+  def owner? 
+  	role == "owner"
+  end
+
+  def admin?
+  	role == "admin"
+  end
+
 end
