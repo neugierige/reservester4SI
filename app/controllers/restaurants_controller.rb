@@ -26,6 +26,7 @@ class RestaurantsController < ApplicationController
 
   def edit
     @restaurant = current_owner.restaurants.find(params[:id])
+    authorize! :edit, @restaurant
   end
 
   def update

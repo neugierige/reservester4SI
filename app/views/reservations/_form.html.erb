@@ -43,7 +43,7 @@
 
 		<p>
 			<%= f.label :email %><br>
-			<%= f.text_field :email %><br>
+			<%= f.email_field :email, required: true %><br>
 		</p>
 
 		<p>
@@ -52,19 +52,17 @@
 
 		<p>
 			<%= f.label 'Date' %><br>
-			<input type="text" id="datepicker" name="reservation[date]" value= <%= @reservation.date %> >
+			<input type="text" id="datepicker" name="reservation[date]" required value= <%= @reservation.date %> >
 		</p>
 
 		<p>
 			<%= f.label 'Time' %><br>
-			<input type="text" id="disableTimeRangesExample" name="reservation[time]" value= <%= @reservation.time %> >
+			<input type="text" id="disableTimeRangesExample" name="reservation[time]" required value= <%= @reservation.time %> >
 		</p>
 
 		<p>
 			<%= f.label :party_size %><br>
-
-			<!-- NOT SURE IF THIS WORKS :-) -->
-			<%= f.number_field(:party_size, in: 1..10) %><br>
+			<%= f.number_field(:party_size, in: 1..8, required: true) %><br>
 		</p>
 
 		<p>

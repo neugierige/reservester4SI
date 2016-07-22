@@ -6,7 +6,9 @@ class Ability
     if user.admin?
        can :manage, :all
     elsif user.owner?
-        can :manage, Restaurant
+        can :manage, Restaurant do |restaurant|
+          restaurant.owner == user
+        end
         can :read, Reservation
     else 
         can :read, Restaurant
