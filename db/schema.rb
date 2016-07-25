@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20160725191039) do
     t.integer "restaurant_id"
   end
 
+  add_index "categories_restaurants", ["category_id"], name: "index_categories_restaurants_on_category_id", using: :btree
+  add_index "categories_restaurants", ["restaurant_id"], name: "index_categories_restaurants_on_restaurant_id", using: :btree
+
   create_table "owners", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -90,6 +93,8 @@ ActiveRecord::Schema.define(version: 20160725191039) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "categories_restaurants", "categories"
+  add_foreign_key "categories_restaurants", "restaurants"
   add_foreign_key "reservations", "restaurants"
   add_foreign_key "reservations", "users"
   add_foreign_key "restaurants", "owners"
