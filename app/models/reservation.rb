@@ -1,11 +1,9 @@
 class Reservation < ActiveRecord::Base
 
 	belongs_to :user
-	belongs_to :restaurant
+	belongs_to :restaurant, inverse_of: :reservations
 	validates_presence_of :restaurant, dependent: :destory
 	validates_presence_of :email
- #  validates_presence_of :date
- #  validates_presence_of :time
 
 	def date
 		reservation_datetime.present? ? reservation_datetime.strftime('%B %e, %Y') : ''

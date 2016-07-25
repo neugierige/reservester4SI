@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-  before_action :authenticate_owner!
+  before_action :authenticate_user!
 
   def dashboard
-    debugger
+    # debugger
     @user = current_user
     if @user.owner?
       @restaurant = current_user.restaurants

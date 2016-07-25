@@ -32,7 +32,7 @@
 			<td><%= x.address%></td> 
 			<td><%= x.phone%></td>
 			<td><%= link_to 'Show', restaurant_path(x) %></td>
-			<% if current_owner == x.owner %>
+			<% if current_user == x.owner %>
 				<td><%= link_to 'Edit', edit_restaurant_path(x) %></td>
 			<% end %>
 		</tr>
@@ -42,7 +42,7 @@
 	</table>
 
 
-	<% if owner_signed_in? %>
+	<% if signed_in? && current_user.owner? %>
 		<p>
 			<%= link_to 'Add a Restaurant', new_restaurant_path %>
 		</p>

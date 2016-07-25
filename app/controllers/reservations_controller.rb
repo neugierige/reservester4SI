@@ -1,7 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show]
   before_action :get_restaurant
-  before_action :get_user_id
 
   def index
     @reservation = Reservation.all
@@ -21,19 +20,14 @@ class ReservationsController < ApplicationController
   end
 
   def create
-    # debugger
     @reservation = @restaurant.reservations.new(reservation_params)
-
-    if @reservation.save
-      flash[:success] = "reservation saved"
-
-      # send email here
-      # ReservesterMailer.reservation_created(@reservation).deliver_later
-
-      redirect_to restaurant_reservation_path(@restaurant, @reservation)
-    else
-      flash[:warning] = "whoops"
+    
+    if reservation_conflict?(@reservation)
+      flash[:warning] = "you already have a reservation at this time"
       redirect_to new_restaurant_reservation_path
+    else
+      @reservation.save
+      flash[:success] = "reservation saved"
     end
   end
 
@@ -56,7 +50,11 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.require(:reservation).permit(:email, :message, :party_size, :date, :time, :reservation_datetime, :restaurant_id, :user_id)
+    params.
+      require(:reservation).
+      permit(:email, :message, :party_size, :date, 
+        :time, :reservation_datetime, :restaurant_id).
+      merge({user_id: current_user.id})
   end
 
   def set_reservation
@@ -67,8 +65,11 @@ class ReservationsController < ApplicationController
     @restaurant = Restaurant.find(params[:restaurant_id])
   end
 
-  def get_user_id
-    @user = User.find(params[:user_id])
+  def reservation_conflict?(new_reservation)
+    current_user.reservations.any? do | reservation |
+      new_reservation.reservation_datetime == reservation.reservation_datetime
+    end
   end
+
 
 end

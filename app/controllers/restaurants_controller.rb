@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_owner!, except: [:show, :index]
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_restaurant, only: [:show]
 
 
@@ -11,11 +11,11 @@ class RestaurantsController < ApplicationController
   end
 
   def new
-    @restaurant = current_owner.restaurants.new
+    @restaurant = current_user.restaurants.new
   end
 
   def create
-    @restaurant = current_owner.restaurants.new(restaurant_params)
+    @restaurant = current_user.restaurants.new(restaurant_params)
     if @restaurant.save
       flash[:success] = "#{@restaurant.name} saved!"
       redirect_to @restaurant

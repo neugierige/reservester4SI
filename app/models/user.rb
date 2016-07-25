@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :reservations
+  has_many :reservations, inverse_of: :users
+  has_many :restaurants, foreign_key: :owner_id, inverse_of: :owner
 
   USER_ROLES=["user", "owner", "admin"]
   validates_inclusion_of :role, in: USER_ROLES
