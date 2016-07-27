@@ -6,9 +6,9 @@
 
 <body>
 	<%= link_to 'Index', root_path %>  |
-	<% if current_owner == @restaurant.owner %>
+	<% if current_user == @restaurant.owner %>
 		<%= link_to 'Edit', edit_restaurant_path(@restaurant) %>  |
-		<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %>
+		<%= link_to 'Delete', restaurant_path(@restaurant), method: :delete %> | 
 	<% end %>
 	<%= link_to 'Make a Reservation', new_restaurant_reservation_path(@restaurant, @user) %>
 
@@ -29,9 +29,10 @@
 
 	<p>
 		<strong>Categories:</strong>
-		<% for category in @restaurant.categories %>
-		<%= category.category_name %>, 
+		<% for category in @restaurant.categories[0..-2] %>
+			<%= category.category_name %>, 
 		<% end %>
+		<%= @restaurant.categories.last.category_name %>
 	</p>
 
 	<p>
