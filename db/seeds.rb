@@ -12,7 +12,7 @@ categories_list = [
 	"Vietnamese", "Ethiopian", "Fast Food", 
 	"Cafe", "Brasserie", "New American", "Drinks", 
 	"Bakery", "Seafood", "Food truck", "Modern",  
-	"Vegetarian", "Vegan", "Burgers", "Bistro"
+	"Vegetarian", "Vegan", "Burgers", "Salads"
 ]
 
 categories_list.each do |name| 

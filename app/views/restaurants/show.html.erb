@@ -28,6 +28,13 @@
 	</p>
 
 	<p>
+		<strong>Categories:</strong>
+		<% for category in @restaurant.categories %>
+		<%= category.category_name %>, 
+		<% end %>
+	</p>
+
+	<p>
 		<strong>Address:</strong>
 		<%= @restaurant.address %>
 	</p>

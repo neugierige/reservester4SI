@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       render "owner_dashboard"
     elsif @user.admin?
       render "admin_dashboard"
-    else
+    elsif @user.user?
       render "user_dashboard"
     end
   end
