@@ -13,7 +13,8 @@
 				<th>Restaurant Address</th>
 				<th>Restaurant Number</th>
 			</tr>
-			<% @user.reservations.each do |x| %>
+			<% future_revs = @user.reservations.where(["reservation_datetime >= ?", Time.now]) %>
+			<% future_revs.each do |x| %>
 				<tr>
 					<td><%= x.reservation_datetime.strftime("%I:%M%p") %></td>
 					<td><%= x.reservation_datetime.strftime("%b %d, %y") %></td>

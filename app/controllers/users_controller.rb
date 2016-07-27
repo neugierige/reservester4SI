@@ -11,8 +11,6 @@ class UsersController < ApplicationController
       render "admin_dashboard"
     elsif @user.user?
       render "user_dashboard"
-    else 
-      render "user_dashboard"
     end
   end
 
