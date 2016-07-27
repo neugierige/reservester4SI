@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    # logger.debug @reservation.inspect
     if @reservation
       render :show
     else

@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = current_owner.restaurants.find(params[:id])
+    @restaurant = current_user.restaurants.find(params[:id])
     authorize! :edit, @restaurant
   end
 
@@ -52,7 +52,7 @@ class RestaurantsController < ApplicationController
   private
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :address, :phone)
+    params.require(:restaurant).permit(:name, :description, :address, :phone, :categories[:id])
   end
 
   def set_restaurant
